@@ -20,10 +20,7 @@ export class AuthService {
     if (user != undefined) {
 
       localStorage.setItem('loggedUser', JSON.stringify(user))
-
-      alert('logged')
-      
-      // this.router.navigate(['/home']); //, { state: { userData: user } }
+      this.router.navigate(['/home']); 
       
     } else {
       alert('Usuário ou senha inválidos');
@@ -47,9 +44,9 @@ export class AuthService {
     }
   }
 
-  // logout() {
-  //   localStorage.removeItem('loggedUser');
-  //   this.router.navigate(['/login']);
-  // }
+  logout() {
+    localStorage.removeItem('loggedUser');
+    this.router.navigate(['/login']);
+  }
 
 }

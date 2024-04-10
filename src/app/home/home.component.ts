@@ -13,6 +13,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 export class HomeComponent {
 
   isMenuRetracted = false;
+  pageTitle: string = 'Página Inicial';
 
   onSidebarRetracted(isRetracted: boolean) {
     this.isMenuRetracted = isRetracted;

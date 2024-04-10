@@ -16,8 +16,8 @@ export class SignUpComponent{
   form = new FormGroup({
     nome: new FormControl('', [Validators.required, this.customValidatorService.validarNomeCompleto()]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    senha: new FormControl('', [Validators.minLength(4), Validators.required]),
-    confirmarSenha: new FormControl('', [Validators.minLength(4), Validators.required]),
+    senha: new FormControl('', [Validators.minLength(8), Validators.required]),
+    confirmarSenha: new FormControl('', [Validators.minLength(8), Validators.required]),
     codigoUsuario: new FormControl('')
   });
 
