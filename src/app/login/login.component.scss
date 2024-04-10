@@ -1,3 +1,5 @@
+@import '../../assets/styles/variables';
+
 form {
     display: flex;
     align-items: center;
@@ -8,18 +10,24 @@ form {
     height: 100vh;
 }
 
+img{
+    width: 150px;
+    margin-bottom: 30px;
+}
+
 .esqueci-senha{
     cursor: pointer;
 }
 
 form h1 {
     font-size: 24px;
-    margin-bottom: 10px;
+    color: $color-900;
 }
 
 form span {
     font-size: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    color: $text-sec;
 }
 
 form input {
@@ -34,14 +42,14 @@ form input {
 }
 
 form a {
-    color: #333;
+    color: $text-sec;
     font-size: 13px;
     text-decoration: none;
     margin-top: 10px;
 }
 
-form button {
-    background-color: #512da8;
+button {
+    background-color: $main-color;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -54,17 +62,10 @@ form button {
     cursor: pointer;
 }
 
-form button.forgot-btn {
-    margin-top: 20px;
-    background-color: transparent;
-    border: 1px solid #512da8;
-    color: #512da8;
+button:hover {
+    background-color: $color-900;
 }
 
-form button.forgot-btn:hover {
-    background-color: #512da8;
-    color: #fff;
-}
 
 
 @media screen and (max-width: 760px) {

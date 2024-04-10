@@ -1,6 +1,7 @@
+@import '../../assets/styles/variables';
+
 body {
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,7 +36,7 @@ body {
 }
 
 .container button {
-    background-color: #512da8;
+    background-color: $main-color;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -141,9 +142,9 @@ body {
 }
 
 .toggle {
-    background-color: #512da8;
+    background-color: $main-color;
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to right, $color-400, $color-600);
     color: #fff;
     position: relative;
     left: -100%;

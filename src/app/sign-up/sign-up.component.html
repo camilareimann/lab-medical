@@ -1,10 +1,11 @@
     <form [formGroup]="form" class="fieldset">
+        <img src="../../assets/logos/logo-positive.svg" alt="logo">
         <h1>Criar conta</h1>
         <span>Cadastre-se para acessar o sistema</span>
         <div id="name" class="elemento-formulario" [ngClass]="{'erro-formulario': (form.controls.nome.dirty ||
         form.controls.nome.touched) &&
         form.controls.nome.errors}">
-            <input placeholder="nome completo" type="text" name="nome" formControlName="nome">
+            <input placeholder="Nome completo" type="text" name="nome" formControlName="nome">
             <span *ngIf="(form.controls.nome.dirty ||
             form.controls.nome.touched) &&
             form.controls.nome.errors &&
@@ -32,7 +33,7 @@
         <div id="password" class="elemento-formulario" [ngClass]="{'erro-formulario': (form.controls.senha.dirty ||
         form.controls.senha.touched) &&
         form.controls.senha.errors}">
-            <input type="password" name="senha" formControlName="senha" placeholder="senha">
+            <input type="password" name="senha" formControlName="senha" placeholder="Senha">
 
             <span *ngIf="form.controls.senha.dirty &&
               form.controls.senha.touched &&
@@ -51,7 +52,7 @@
         form.controls.confirmarSenha.touched) &&
         form.controls.confirmarSenha.errors}">
             <input type="password" name="confirmarSenha" formControlName="confirmarSenha"
-                placeholder="confirme sua senha">
+                placeholder="Confirme sua senha">
 
             <span *ngIf="form.controls.confirmarSenha.dirty &&
               form.controls.confirmarSenha.touched &&
@@ -69,7 +70,7 @@
 
         <button (click)="cadastrar()">Cadastrar</button>
         <div class="sign-up" style="display: none;">
-            <a href="login">back?</a>
+            <a href="login">Voltar para login?</a>
         </div>
     </form>
 
