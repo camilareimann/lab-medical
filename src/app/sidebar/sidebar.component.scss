@@ -1,6 +1,10 @@
 @import '../../assets/styles/variables';
 
 .container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     width: 100%;
     max-width: 360px;
     height: 100vh;
