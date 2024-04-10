@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <h1>Entrar</h1>
+    <span>Insira seu email e senha</span>
+    <input id="email" name="email" type="text" formControlName="email" placeholder="Email">
+    <input id="password" name="password" type="password" formControlName="password" placeholder="Senha">
+    <a class="esqueci-senha" (click)="esqueciSenha()">→ Esqueceu sua senha? ←</a>
+    <button type="submit">Login</button>
+    <div class="sign-up" style="display: none;">
+        <a href="cadastro">Cadastro</a>
+    </div>
+</form>
