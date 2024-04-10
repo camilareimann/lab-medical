@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -10,12 +10,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class SidebarComponent {
 
+  @Output() sidebarRetracted = new EventEmitter<boolean>();
+
   isMenuRetracted = false;
   
   toggleMenuRetraction() {
     this.isMenuRetracted = !this.isMenuRetracted;
+    this.sidebarRetracted.emit(this.isMenuRetracted);
 }
-
-
 
 }
