@@ -1,0 +1,83 @@
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    margin: 20px;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+form span {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.elemento-formulario {
+    width: 100%;
+}
+
+form input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+form button {
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+form button.sign-up-btn {
+    margin-top: 20px;
+    background-color: transparent;
+    border: 1px solid #512da8;
+    color: #512da8;
+}
+
+form button.sign-up-btn:hover {
+    background-color: #512da8;
+    color: #fff;
+}
+
+.sign-up-btn {
+    display: none;
+}
+
+
+.erro-formulario {
+
+    label,
+    span {
+        color: red;
+    }
+
+    input {
+        border-color: red;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .sign-up {
+        display: block !important;
+    }
+}
