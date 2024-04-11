@@ -292,3 +292,23 @@
     }
 
 }
+
+.retracted {
+    padding-left: 150px;
+
+    @media (min-width: 768px) {
+        .container-patients {
+            grid-template-columns: repeat(3, 1fr); 
+        }}
+
+    @media (min-width: 1040px) {
+        .container-patients {
+            grid-template-columns: repeat(4, 1fr); 
+        }}
+
+    @media (min-width: 1620px) {
+        .container-patients {
+            grid-template-columns: repeat(5, 1fr); 
+        }
+    }
+}
