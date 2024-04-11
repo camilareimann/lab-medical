@@ -40,7 +40,13 @@
                 height: 50px;
                 border-radius: 50%;
                 background-color: $main-color;
-                margin-right: 5px;
+                margin-right: 8px;
+                font-size: 34px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: #fff;
             }
 
             p {

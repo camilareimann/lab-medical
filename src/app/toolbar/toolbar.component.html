@@ -1,7 +1,7 @@
 <div class="container" [ngClass]="{'retracted': isMenuRetracted}" >
     <div class="header"><div class="titulo"><h3>{{ pageTitle }}</h3></div>
     <div class="row-right">
-        <div class="user"><div class="icon"><img src="" alt=""></div>
+        <div class="user"><div class="icon"><fa-icon  class="user-icon" icon="user"></fa-icon></div>
         <div class="nome"><p>{{ userData.nome }}</p></div></div>
         <div class="logout"><a (click)="onLogoutClick()"><fa-icon icon="sign-out"></fa-icon></a></div>
     </div>
