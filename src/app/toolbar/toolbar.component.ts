@@ -21,7 +21,6 @@ export class ToolbarComponent implements OnInit {
     this.userData = loggedUser;
   }
 
-
   constructor(private authService: AuthService) {}
 
 onLogoutClick() {
