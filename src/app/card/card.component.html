@@ -1,0 +1,24 @@
+<div class="card-paciente">
+    <div class="img">
+        <img src="../../assets/pictures/foto.png" alt="">
+    </div>
+    <div class="information">
+        <div class="main-info">
+            <h4 class="name">{{ patient.name }}</h4>
+            <div class="age">
+                <p>{{ patient.age }} anos</p>
+            </div>
+        </div>
+        <div class="secondary-info">
+            <div class="phone"><fa-icon icon="phone"></fa-icon>
+                <p>{{ patient.phone }}</p>
+            </div>
+            <div class="plan"><fa-icon icon="id-card"></fa-icon>
+                <p>{{ patient.plan }}</p>
+            </div>
+        </div>
+        <div class="btn">
+            <button>Editar cadastro <fa-icon icon="pencil"></fa-icon></button>
+        </div>
+    </div>
+</div>
