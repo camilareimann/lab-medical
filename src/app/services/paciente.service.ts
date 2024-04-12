@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class PacienteService {
 
-  private pacienteList: any[] = []; 
+  private pacienteList: any[] = [];
 
   constructor() {
     const localData = localStorage.getItem('pacienteData');
@@ -15,27 +15,30 @@ export class PacienteService {
   }
 
   getAllPatients(): any[] {
-    return this.pacienteList; 
+    return this.pacienteList;
+  }
+
+  getPatientById(patientId: string): any {
+    return this.pacienteList.find(p => p.id === patientId);
   }
 
   addPatient(patient: any): void {
     const patientId = Math.floor(1000 + Math.random() * 9000);
-    patient.id = patientId.toString(); 
+    patient.id = patientId.toString();
     this.pacienteList.push(patient);
-    this.saveToLocalStorage(); 
+    this.saveToLocalStorage();
   }
 
   updatePatient(updatedPatient: any): void {
-    const index = this.pacienteList.findIndex((p) => p.id === updatedPatient.id);
+    const index = this.pacienteList.findIndex(p => p.id === updatedPatient.id);
     if (index !== -1) {
       this.pacienteList[index] = { ...updatedPatient };
-      this.saveToLocalStorage(); 
+      this.saveToLocalStorage();
     }
   }
 
   deletePatient(patientId: string): void {
-
-    const index = this.pacienteList.findIndex((p) => p.id === patientId);
+    const index = this.pacienteList.findIndex(p => p.id === patientId);
     if (index !== -1) {
       this.pacienteList.splice(index, 1);
       this.saveToLocalStorage();

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -11,5 +11,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 export class CardComponent {
 
   @Input() patient: any;
+
+  @Output() editPatient: EventEmitter<string> = new EventEmitter<string>();
+
+  editarCadastro(patientId: string) {
+    this.editPatient.emit(patientId);
+  }
   
 }
