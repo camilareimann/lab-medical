@@ -5,27 +5,10 @@ import { HomeComponent } from './home/home.component';
 import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
 
 export const routes: Routes = [
-    
-    {
-        path: "", 
-        redirectTo: "home", 
-        pathMatch: "full" 
-    },
-    {
-        path: "home",
-        component: HomeComponent
-    },
-    {
-        path: "login",
-        component: SinginSignupPageComponent
-    },
-    {
-        path: "cadastro",
-        component: SignUpComponent
-    },
-    {
-        path: "paciente",
-        component: CadastroPacienteComponent
-    },
-
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'login', component: SinginSignupPageComponent },
+    { path: 'cadastro', component: SignUpComponent },
+    { path: 'paciente', component: CadastroPacienteComponent },
+    { path: 'paciente/edit/:id', component: CadastroPacienteComponent }
 ];

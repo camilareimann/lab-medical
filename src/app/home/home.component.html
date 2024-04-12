@@ -38,7 +38,7 @@
     </div>
     <div class="container-patients">
 
-        <app-card *ngFor="let patient of pacienteData" [patient]="patient"></app-card>
+        <app-card *ngFor="let patient of pacienteData" [patient]="patient" (editPatient)="editarPaciente($event)"></app-card>
 
     </div>
 </div>

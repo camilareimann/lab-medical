@@ -5,6 +5,7 @@ import { CustomValidatorService } from '../services/custom-validator.service';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { PacienteService } from '../services/paciente.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -13,25 +14,18 @@ import { PacienteService } from '../services/paciente.service';
   templateUrl: './cadastro-paciente.component.html',
   styleUrl: './cadastro-paciente.component.scss'
 })
-export class CadastroPacienteComponent{
-
-  isMenuRetracted = false;
-  pageTitle: string = 'Cadastro do Paciente';
-
-  onSidebarRetracted(isRetracted: boolean) {
-    this.isMenuRetracted = isRetracted;
-  }
+export class CadastroPacienteComponent {
+  form: FormGroup;
+  isEdit: boolean = false;
 
   constructor(
-    private customValidatorService: CustomValidatorService,
+    private route: ActivatedRoute,
+    private router: Router,
     private patientService: PacienteService,
-  ) { }
-
-  pacienteObj: any = {};
-  pacienteList: any[] = [];
-
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required, this.customValidatorService.validarNomeCompleto()]),
+    private customValidatorService: CustomValidatorService
+  ) {
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required, this.customValidatorService.validarNomeCompleto()]),
     gender: new FormControl(''),
     dataNascimento: new FormControl('', Validators.required), 
     cpf: new FormControl('', Validators.required), 
@@ -55,38 +49,34 @@ export class CadastroPacienteComponent{
     hood: new FormControl(''),
     reference: new FormControl(''),
     id: new FormControl('')
-  });
 
+    });
 
-  updatePaciente() {
-    this.patientService.updatePatient(this.form.value);
-  }
-
-  onEdit(item: any) {
-    this.form.setValue(item);
-  }
-
-
-  onDelete(item: any) {
-    this.patientService.deletePatient(item.id);
+    // Verifique se há um ID de paciente na rota
+    this.route.params.subscribe(params => {
+      const pacienteId = params['id'];
+      if (pacienteId) {
+        const paciente = this.patientService.getPatientById(pacienteId);
+        if (paciente) {
+          this.isEdit = true;
+          this.form.patchValue(paciente);
+        }
+      }
+    });
   }
 
   cadastrar() {
-    const existingPaciente = this.patientService.getAllPatients().find((p) => p.cpf === this.form.value.cpf);
-  
-    if (existingPaciente) {
-      alert('Paciente já cadastrado');
-    } else {
-      if (this.form.valid) {
-        if (!this.form.value.id) {
-          const patientId = Math.floor(1000 + Math.random() * 9000);
-          this.form.patchValue({ id: patientId.toString() });
-        }
-        this.patientService.addPatient(this.form.value);
-        alert('Cadastro concluído');
+    if (this.form.valid) {
+      if (this.isEdit) {
+        this.patientService.updatePatient(this.form.value);
+        alert('Paciente atualizado com sucesso!');
       } else {
-        alert('Formulário inválido');
+        this.patientService.addPatient(this.form.value);
+        alert('Paciente cadastrado com sucesso!');
       }
+      this.router.navigate(['/paciente']);
+    } else {
+      alert('Por favor, preencha todos os campos corretamente.');
     }
   }
 }
