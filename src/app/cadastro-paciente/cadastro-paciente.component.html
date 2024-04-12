@@ -1,0 +1,153 @@
+<app-sidebar (sidebarRetracted)="onSidebarRetracted($event)"></app-sidebar>
+<app-toolbar [isMenuRetracted]="isMenuRetracted" [pageTitle]="pageTitle"></app-toolbar>
+<div class="container" id="cadastro" [ngClass]="{'retracted': isMenuRetracted}">
+
+    <form [formGroup]="form" class="fieldset" (ngSubmit)="cadastrar()">
+        <div id="name" class="elemento-formulario" [ngClass]="{'erro-formulario': (form.controls.name.dirty ||
+        form.controls.name.touched) &&
+        form.controls.name.errors}">
+            <label for="name">Nome Completo:</label>
+            <input placeholder="Nome completo" type="text" name="name" formControlName="name">
+            <span *ngIf="(form.controls.name.dirty ||
+            form.controls.name.touched) &&
+            form.controls.name.errors &&
+            form.controls.name.errors['required']">
+                *Preenchimento obrigatório
+            </span>
+            <span *ngIf="(form.controls.name.dirty ||
+            form.controls.name.touched) &&
+            form.controls.name.errors &&
+            form.controls.name.errors['validarNomeCompleto']">
+                *Por favor, insira seu nome completo
+            </span>
+        </div>
+        <div class="row">
+            <div id="gender" class="elemento-formulario">
+                <label for="gender">Gênero:</label>
+                <select name="gender" formControlName="gender">
+                    <option value="" disabled selected>Selecione o gênero</option>
+                    <option value="Homem cis">Homem cis</option>
+                    <option value="Mulher cis">Mulher cis</option>
+                    <option value="Mulher trans">Mulher trans</option>
+                    <option value="Homem trans">Homem trans</option>
+                    <option value="Não binário">Não binário</option>
+                    <option value="Prefiro não informar">Não informar</option>
+                </select>
+            </div>
+            <div id="dataNascimento" class="elemento-formulario">
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" name="dataNascimento" formControlName="dataNascimento">
+            </div>
+        </div>
+        <div class="row">
+            <div id="cpf" class="elemento-formulario">
+                <label for="cpf">CPF:</label>
+                <input placeholder="Ex.: 000.000.000-00" type="text" name="cpf" formControlName="cpf">
+            </div>
+            <div id="rg" class="elemento-formulario">
+                <label for="rg">RG com Orgão Expedidor:</label>
+                <input placeholder="Ex.: 000000-0 SESP SC" type="text" name="rg" formControlName="rg">
+            </div>
+        </div>
+        <div id="civil" class="elemento-formulario">
+            <label for="civil">Estado Civil:</label>
+            <select name="civil" formControlName="civil">
+                <option value="" disabled selected>Selecione o Estado Civil:</option>
+                <option value="Casado">Casado</option>
+                <option value="Solteiro">Solteiro</option>
+            </select>
+        </div>
+        <div class="row">
+            <div id="phone" class="elemento-formulario">
+                <label for="phone">Telefone:</label>
+                <input placeholder="Ex.: (00) 00000-0000" type="text" name="phone" formControlName="phone">
+            </div>
+            <div id="email" class="elemento-formulario">
+                <label for="email">Email:</label>
+                <input placeholder="Ex.: email@email.com.br" type="email" name="email"
+                    formControlName="email">
+            </div>
+        </div>
+        <div class="row">
+            <div id="emergency-contact" class="elemento-formulario">
+                <label for="emergency-contact">Nome do contato de emergência:</label>
+                <input placeholder="Ex.: Maria" type="text" name="emergency-contact"
+                    formControlName="emergencyContact">
+            </div>
+            <div id="rg" class="elemento-formulario">
+                <label for="contact-phone">Telefone do contato de emergência:</label>
+                <input placeholder="Ex.: (00) 00000-0000" type="text" name="contact-phone"
+                    formControlName="contactPhone">
+            </div>
+        </div>
+        <div id="alergies" class="elemento-formulario">
+            <label for="alergies">Alergias:</label>
+            <input placeholder="Ex.: Tomate, Sol, Aspirina" type="text" name="alergies"
+                formControlName="alergies">
+        </div>
+        <div id="care" class="elemento-formulario">
+            <label for="care">Cuidados Específicos:</label>
+            <input placeholder="Ex.: Paciente diabético(a), usa insulina" type="text" name="care"
+                formControlName="care">
+        </div>
+        <div class="row-3">
+            <div id="convenio" class="elemento-formulario">
+                <label for="convenio">Convênio:</label>
+                <input placeholder="Ex.: UNIMED" type="text" name="convenio" formControlName="convenio">
+            </div>
+            <div id="convenio-num" class="elemento-formulario">
+                <label for="convenio-num">Número do Convênio:</label>
+                <input placeholder="Ex.: 00000000000" type="text" name="convenio-num"
+                    formControlName="convenioNum">
+            </div>
+            <div id="convenio-val" class="elemento-formulario">
+                <label for="convenio-val">Validade do Convênio:</label>
+                <input placeholder="Ex.: 00000000000" type="text" name="convenio-val"
+                    formControlName="convenioVal">
+            </div>
+        </div>
+        <div class="row-3">
+            <div id="cep" class="elemento-formulario">
+                <label for="cep">CEP:</label>
+                <input placeholder="Ex.: Ex.: 000000000" type="text" name="cep" formControlName="cep">
+            </div>
+            <div id="state" class="elemento-formulario">
+                <label for="state">Estado:</label>
+                <input placeholder="Ex.: Santa Catarina" type="text" name="state" formControlName="state">
+            </div>
+            <div id="city" class="elemento-formulario">
+                <label for="city">Cidade:</label>
+                <input placeholder="Ex.: Florianopolis" type="text" name="city" formControlName="city">
+            </div>
+        </div>
+        <div class="row-3">
+            <div id="street" class="elemento-formulario">
+                <label for="street">Logradouro:</label>
+                <input placeholder="Ex.: Rua das flores" type="text" name="street" formControlName="street">
+            </div>
+            <div id="street-num" class="elemento-formulario">
+                <label for="street-num">Número:</label>
+                <input placeholder="Ex.: 000000-0 SESP SC" type="text" name="street-num"
+                    formControlName="streetNum">
+            </div>
+            <div id="street-extra" class="elemento-formulario">
+                <label for="street-extra">Complemento:</label>
+                <input placeholder="Ex.: Apto 01" type="text" name="street-extra"
+                    formControlName="streetExtra">
+            </div>
+        </div>
+        <div class="row">
+            <div id="hood" class="elemento-formulario">
+                <label for="hood">Bairro:</label>
+                <input placeholder="Ex.: Bairro das aves" type="text" name="hood" formControlName="hood">
+            </div>
+            <div id="reference" class="elemento-formulario">
+                <label for="reference">Ponto de referência:</label>
+                <input placeholder="Ex.: Perto da farmacia" type="text" name="reference"
+                    formControlName="reference">
+
+            </div>
+        </div>
+        <button (click)="cadastrar()">Cadastrar</button>
+    </form>
+</div>
