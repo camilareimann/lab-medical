@@ -184,12 +184,10 @@
         </div>
 
         <div class="buttons">
-            <button class="delete" [disabled]="!isEdit" (click)="deletePatient()" [class.disabled]="!isEdit">Delete</button>
-            <button class="edit" [disabled]="!isEdit" (click)="cadastrar()" [class.disabled]="!isEdit">Edit</button>
-            <button class="save" [disabled]="!form.valid" (click)="cadastrar()"
-                [class.disabled]="!form.valid">Save</button>
+            <button class="delete" [disabled]="!isEdit" (click)="deletePatient()" [class.disabled]="!isEdit">Deletar</button>
+            <button class="edit" [disabled]="!isEdit" (click)="cadastrar()" [class.disabled]="!isEdit">Editar</button>
+            <button class="save" [disabled]="!form.valid || isEdit"   (click)="cadastrar()"
+            [class.disabled]="!form.valid || isEdit">Cadastrar</button>
         </div>
-
-
     </form>
 </div>
