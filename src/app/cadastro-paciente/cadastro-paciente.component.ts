@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomValidatorService } from '../services/custom-validator.service';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { PacienteService } from '../services/paciente.service';
@@ -9,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { ViaCepService } from '../services/via-cep.service';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -18,23 +18,25 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
   styleUrl: './cadastro-paciente.component.scss'
 })
 
-export class CadastroPacienteComponent {
+export class CadastroPacienteComponent implements OnInit{
 
   isMenuRetracted = false;
   pageTitle: string = 'Cadastro de Pacientes';
+
+  showAddress: boolean = false;
+  form: FormGroup;
+  isEdit: boolean = false;
+
 
   onSidebarRetracted(isRetracted: boolean) {
     this.isMenuRetracted = isRetracted;
   }
 
-  form: FormGroup;
-  isEdit: boolean = false;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private patientService: PacienteService,
-    private customValidatorService: CustomValidatorService,
+    private viaCepService: ViaCepService,
   ) {
     this.form = new FormGroup({
       name: new FormControl('', [
@@ -76,6 +78,8 @@ export class CadastroPacienteComponent {
       id: new FormControl('')
     });
 
+  }
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
       const pacienteId = params['id'];
       if (pacienteId) {
@@ -86,6 +90,27 @@ export class CadastroPacienteComponent {
         }
       }
     });
+
+    this.form.get('cep')?.valueChanges.subscribe(cep => {
+      if (cep && cep.length === 8) { 
+        this.viaCepService.get(cep).subscribe(address => {
+          this.form.patchValue({
+            state: address.uf,
+            city: address.localidade,
+            street: address.logradouro,
+            hood: address.bairro,
+          });
+        });
+      } else if (cep === null || cep === '') {
+        this.form.patchValue({
+          state: null,
+          city: null,
+          street: null,
+          hood: null,
+        });
+      }
+    });
+  
   }
 
   cadastrar() {
@@ -137,6 +162,5 @@ export class CadastroPacienteComponent {
       });
     }
   }}
-
 
 }
