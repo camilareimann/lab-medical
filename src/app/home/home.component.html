@@ -33,12 +33,12 @@
         </div>
     </div>
     <div class="container-search">
-        <input type="text" placeholder="Busque por nome, telefone ou e-mail">
+        <input type="text" placeholder="Busque por nome, telefone ou e-mail" [(ngModel)]="searchQuery" (input)="filterPatients()">
         <button>Buscar</button>
     </div>
     <div class="container-patients">
 
-        <app-card *ngFor="let patient of pacienteData" [patient]="patient" (editPatient)="editarPaciente($event)"></app-card>
+        <app-card *ngFor="let patient of filteredPacienteData" [patient]="patient" (editPatient)="editarPaciente($event)"></app-card>
 
     </div>
 </div>
