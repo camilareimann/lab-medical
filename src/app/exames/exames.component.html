@@ -1,0 +1,85 @@
+<app-sidebar (sidebarRetracted)="onSidebarRetracted($event)"></app-sidebar>
+<app-toolbar [isMenuRetracted]="isMenuRetracted" [pageTitle]="pageTitle"></app-toolbar>
+<div class="container" id="exame" [ngClass]="{'retracted': isMenuRetracted}">
+
+    <div class="container-search">
+        <input type="text" placeholder="Busque por nome, telefone ou e-mail" [(ngModel)]="searchQuery"
+            (input)="filterPatients()">
+        <button>Buscar</button>
+    </div>
+
+    <div class="search-result" *ngIf="searchQuery.trim() !== ''">
+        <div *ngFor="let patient of filteredPacienteData">
+            {{ patient.name }} - {{ patient.email }} - {{ patient.phone }}
+            <button *ngIf="selectedPatientId !== patient.id" (click)="selectPatient(patient.id)">Select</button>
+            <div *ngFor="let exam of patientExams">
+                <p>Date: {{ exam.date }}</p>
+                <p>Type: {{ exam.type }}</p>
+                <button (click)="editar(exam.id)">Editar</button>
+                <button (click)="deletar(exam.id)">Deletar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-container" *ngIf="isFormVisible">
+        <form [formGroup]="form" class="fieldset" (ngSubmit)="cadastrar()">
+            <div id="name" class="elemento-formulario"
+                [ngClass]="{'erro-formulario': form.get('name')?.invalid && form.get('name')?.touched}">
+                <label for="name">Nome Completo:</label>
+                <input placeholder="Nome completo" type="text" name="name" formControlName="name">
+                <span *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+                    Nome do exame é obrigatório e deve ter entre 8 e 64 caracteres.
+                </span>
+            </div>
+            <div class="row">
+                <div id="date" class="elemento-formulario"
+                    [ngClass]="{'erro-formulario': form.get('date')?.invalid && form.get('date')?.touched}">
+                    <label for="date">Data:</label>
+                    <input type="date" name="date" formControlName="date">
+                    <span *ngIf="form.get('date')?.invalid && form.get('date')?.touched" class="erro-formulario">
+                        Data de nascimento é obrigatória.
+                    </span>
+                </div>
+                <div id="time" class="elemento-formulario"
+                    [ngClass]="{'erro-formulario': form.get('time')?.invalid && form.get('time')?.touched}">
+                    <label for="time">Data horario:</label>
+                    <input type="time" name="time" formControlName="time">
+                    <span *ngIf="form.get('time')?.invalid && form.get('time')?.touched" class="erro-formulario">
+                        Horário é obrigatorio.
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div id="type" class="elemento-formulario"
+                    [ngClass]="{'erro-formulario': form.get('type')?.invalid && form.get('type')?.touched}">
+                    <label for="type">CPF:</label>
+                    <input type="text" name="type" formControlName="type">
+                    <span *ngIf="form.get('type')?.invalid && form.get('type')?.touched" class="erro-formulario">
+                        Tipo do exame é obrigatório.
+                    </span>
+                </div>
+                <div id="lab" class="elemento-formulario"
+                    [ngClass]="{'erro-formulario': form.get('lab')?.invalid && form.get('lab')?.touched}">
+                    <label for="lab">RG com Orgão Expedidor:</label>
+                    <input type="text" name="lab" formControlName="lab">
+                    <span *ngIf="form.get('lab')?.invalid && form.get('lab')?.touched" class="erro-formulario">
+                        Nome do laboratório é obrigatório.
+                    </span>
+                </div>
+            </div>
+            <div id="url" class="elemento-formulario">
+                <label for="url">Alergias:</label>
+                <input type="text" name="url" formControlName="url">
+            </div>
+            <div id="results" class="elemento-formulario">
+                <label for="results">Cuidados Específicos:</label>
+                <textarea type="text" name="results" formControlName="results"></textarea>
+            </div>
+
+            <div class="buttons">
+                <button class="save" [disabled]="!form.valid" (click)="cadastrar()"
+                    [class.disabled]="!form.valid">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

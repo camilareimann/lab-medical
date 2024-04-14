@@ -3,6 +3,7 @@ import { SinginSignupPageComponent } from './singin-signup-page/singin-signup-pa
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
+import { ExamesComponent } from './exames/exames.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -10,5 +11,14 @@ export const routes: Routes = [
     { path: 'login', component: SinginSignupPageComponent },
     { path: 'cadastro', component: SignUpComponent },
     { path: 'paciente', component: CadastroPacienteComponent },
-    { path: 'paciente/edit/:id', component: CadastroPacienteComponent }
+    { 
+      path: 'paciente/edit/:id', 
+      component: CadastroPacienteComponent 
+    },
+    { 
+      path: 'paciente/exam/:examId', 
+      component: ExamesComponent 
+    },
+    { path: 'exames', component: ExamesComponent },
+    { path: 'exames/:id', component: ExamesComponent }
 ];
