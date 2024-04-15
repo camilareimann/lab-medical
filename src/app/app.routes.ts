@@ -11,14 +11,7 @@ export const routes: Routes = [
     { path: 'login', component: SinginSignupPageComponent },
     { path: 'cadastro', component: SignUpComponent },
     { path: 'paciente', component: CadastroPacienteComponent },
-    { 
-      path: 'paciente/edit/:id', 
-      component: CadastroPacienteComponent 
-    },
-    { 
-      path: 'paciente/exam/:examId', 
-      component: ExamesComponent 
-    },
-    { path: 'exames', component: ExamesComponent },
-    { path: 'exames/:id', component: ExamesComponent }
+    { path: 'paciente/edit/:id', component: CadastroPacienteComponent },
+    { path: 'exame', component: ExamesComponent },
+    { path: 'exame/edit/:examId', component: ExamesComponent },
 ];

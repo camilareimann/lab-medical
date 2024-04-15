@@ -26,8 +26,7 @@ export class ExamesComponent implements OnInit{
   filteredPacienteData: any[] = [];
   searchQuery: string = '';
   selectedPatientId: string | null = null;
-  selectedExamId: string | null = null;
-
+  selectedExamId: string = '';
   isFormVisible: boolean = false; 
 
   onSidebarRetracted(isRetracted: boolean) {
@@ -77,11 +76,12 @@ export class ExamesComponent implements OnInit{
   }
 
   filterPatients(): void {
-    if (this.searchQuery.trim() !== '') {
+    const lowercaseSearchQuery = this.searchQuery.trim().toLowerCase();
+    if (lowercaseSearchQuery !== '') {
       this.filteredPacienteData = this.pacienteData.filter(patient =>
-        patient.name.includes(this.searchQuery) ||
-        patient.email.includes(this.searchQuery) ||
-        patient.phone.includes(this.searchQuery)
+        patient.name.toLowerCase().includes(lowercaseSearchQuery) ||
+        patient.email.toLowerCase().includes(lowercaseSearchQuery) ||
+        patient.phone.toLowerCase().includes(lowercaseSearchQuery)
       );
     } else {
       this.filteredPacienteData = [...this.pacienteData];
@@ -101,7 +101,16 @@ export class ExamesComponent implements OnInit{
       } else {
         this.pacienteService.addExam(this.selectedPatientId!, exam);
       }
-      this.resetForm();
+      Swal.fire({
+        text: "Exame salvo com sucesso!",
+        icon: "success",
+        confirmButtonColor: "#0A7B73",
+        confirmButtonText: "OK"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     }
   }
 
@@ -117,13 +126,19 @@ export class ExamesComponent implements OnInit{
   
   deletar(examId: string): void {
     this.pacienteService.deleteExam(this.selectedPatientId!, examId);
+    Swal.fire({
+      text: "Exame excluído com sucesso!",
+      icon: "success",
+      confirmButtonColor: "#0A7B73",
+      confirmButtonText: "OK"
+    });
     this.resetForm();
   }
 
   resetForm(): void {
     this.form.reset();
     this.isEdit = false;
-    this.selectedExamId = null;
+    this.selectedExamId = "";
   }
 
   selectPatient(patientId: string): void {

@@ -12,7 +12,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
   imports: [RouterOutlet, SidebarComponent, FontAwesomeModule, NgxMaskDirective,
     NgxMaskPipe],
     providers: [
-      provideNgxMask()
+      provideNgxMask(),
     ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

@@ -11,6 +11,7 @@
 
 .container-search {
     margin-top: 30px;
+    margin-bottom: 30px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -23,7 +24,7 @@
         width: 100%;
         height: 42px;
         border: 2px solid $color-500;
-        border-radius: 100px;
+        border-radius: 8px;
         outline: none;
         box-shadow: none;
         padding-left: 20px;
@@ -39,6 +40,87 @@
         text-transform: uppercase;
     }
 }
+
+.search-result {
+    display: flex;
+    flex-direction: column;
+
+    .patient-result {
+        padding: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 10px;
+        border: 2px solid $color-500;
+        border-radius: 8px;
+        margin-bottom: 20px;
+
+        .patient-data {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+                font-size: 16px;
+                font-weight: 900;
+                color: $main-color;
+            }
+
+            button {
+                background-color: transparent;
+                border: 1px solid $sec-color;
+                width: 128px;
+                height: 27px;
+                border-radius: 100px;
+                font-size: 10px;
+            }
+        }
+
+        .exam-list {
+            gap:10px;
+        
+            .exam-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+        
+                .exam-name {
+                    flex: 1; 
+                    font-size: 12px;
+                }
+        
+                .exam-buttons {
+                    display: flex;
+                    gap: 10px;
+        
+                    .button-edit,
+                    .button-delete {
+                        width: 70px; // Adjust width as needed
+                        height: 27px;
+                        border-radius: 100px;
+                        font-size: 10px;
+                    }
+        
+                    .button-edit {
+                        background-color: $third-color;
+                        border: 1px solid $color-500;
+                    }
+        
+                    .button-delete {
+                        background-color: #f09a9a;
+                        border: 1px solid #F04444;
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 .elemento-formulario {
     margin-bottom: 10px;
@@ -72,6 +154,26 @@ input[type="date"] {
     font-size: 16px;
     line-height: 34px;
     padding-right: 20px;
+}
+
+textarea {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+    border: 2px solid $color-500;
+    border-radius: 8px;
+    padding-left: 20px;
+    padding-top: 10px; // Adjust as needed
+    padding-bottom: 10px; // Adjust as needed
+    resize: vertical; // Allow vertical resizing
+    color: #777779;
+
+    &:focus {
+        border-color: $main-color;
+    }
 }
 
 select {
@@ -141,12 +243,10 @@ select {
 }
 
 .erro-formulario {
-
     label,
     span {
         color: red;
     }
-
     input,
     select {
         border-color: red;
