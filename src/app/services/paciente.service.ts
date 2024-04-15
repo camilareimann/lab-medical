@@ -41,20 +41,12 @@ export class PacienteService {
     }
   }
 
+
   deletePatient(patientId: string): void {
     const index = this.pacienteList.findIndex(p => p.id === patientId);
     if (index !== -1) {
-      const patient = this.pacienteList[index];
-      if (!patient.exams || patient.exams.length === 0) { 
-        if (!patient.consultas || patient.consultas.length === 0) { 
-          this.pacienteList.splice(index, 1);
-          this.saveToLocalStorage();
-        } else {
-          console.log("Cannot delete patient because there are consultas saved to their profile.");
-        }
-      } else {
-        console.log("Cannot delete patient because there are exams saved to their profile.");
-      }
+      this.pacienteList.splice(index, 1);
+      this.saveToLocalStorage(); 
     }
   }
 

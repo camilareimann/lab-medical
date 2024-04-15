@@ -142,25 +142,78 @@ export class CadastroPacienteComponent implements OnInit{
     }
   }
 
-  deletePatient() {
-    if (this.isEdit) {
-    const pacienteId = this.form.get('id')?.value; 
-    if (pacienteId) {
-      this.patientService.deletePatient(pacienteId);
-      Swal.fire({
-        text: "Paciente excluído com sucesso!",
-        icon: "success",
-        confirmButtonColor: "#0A7B73",
-        confirmButtonText: "OK"
-      });
-      this.router.navigate(['/home']);
+  // deletePatient() {
+  //   if (this.isEdit) {
+  //   const pacienteId = this.form.get('id')?.value; 
+  //   if (pacienteId && paciente.exams || paciente.exams.length > 0) {
+  //     this.patientService.deletePatient(pacienteId);
+  //     Swal.fire({
+  //       text: "Paciente excluído com sucesso!",
+  //       icon: "success",
+  //       confirmButtonColor: "#0A7B73",
+  //       confirmButtonText: "OK"
+  //     });
+  //     this.router.navigate(['/home']);
+  //   } else {
+  //     Swal.fire({
+  //       text: "Não foi possível encontrar o paciente.",
+  //       icon: "error",
+  //       confirmButtonColor: "#0A7B73"
+  //     });
+  //   }
+  // }}
+
+  hasConsultasOrExams(patientId: string): boolean {
+    const patient = this.patientService.getPatientById(patientId);
+    
+    if (patient && (patient.consultas || patient.exams)) {
+      return (patient.consultas && patient.consultas.length > 0) || (patient.exams && patient.exams.length > 0);
     } else {
-      Swal.fire({
-        text: "Não foi possível encontrar o paciente.",
-        icon: "error",
-        confirmButtonColor: "#0A7B73"
-      });
+      return false;
     }
-  }}
+  }
+
+  deletePatient() {
+    console.log("Inside deletePatient method.");
+    console.log("this.isEdit:", this.isEdit);
+  
+    if (this.isEdit) {
+      console.log("Attempting to delete patient...");
+      const pacienteId = this.form.get('id')?.value;
+      console.log("Paciente ID:", pacienteId);
+  
+      const hasConsultasOrExams = this.hasConsultasOrExams(pacienteId);
+      console.log("hasConsultasOrExams:", hasConsultasOrExams);
+  
+      if (hasConsultasOrExams) {
+        console.log("Cannot delete patient with associated consultas or exams.");
+        Swal.fire({
+          text: "Paciente não pode ser excluído. Para excluir, exclua exames e consultas relacionadas a esse paciente!",
+          icon: "error",
+          confirmButtonColor: "#0A7B73",
+          confirmButtonText: "OK"
+        });
+        this.router.navigate(['/home']);
+        return;
+      } else {
+        console.log("Deleting patient...");
+        this.patientService.deletePatient(pacienteId);
+        console.log("Patient deleted successfully.");
+  
+        Swal.fire({
+          text: "Paciente excluído com sucesso!",
+          icon: "success",
+          confirmButtonColor: "#0A7B73",
+          confirmButtonText: "OK"
+        });
+  
+        console.log("Navigating to home page...");
+        this.router.navigate(['/home']);
+      }
+    } else {
+      console.log("Not in edit mode. Skipping delete.");
+    }
+  }
+
 
 }
