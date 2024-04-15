@@ -34,7 +34,7 @@
             <div id="name" class="elemento-formulario"
                 [ngClass]="{'erro-formulario': form.get('name')?.invalid && form.get('name')?.touched}">
                 <label for="name">Nome do exame:</label>
-                <input placeholder="Nome completo" type="text" name="name" formControlName="name">
+                <input placeholder="EX:. Ressonância Magnética" type="text" name="name" formControlName="name">
                 <span *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
                     Nome do exame é obrigatório e deve ter entre 8 e 64 caracteres.
                 </span>
@@ -45,7 +45,7 @@
                     <label for="date">Data do exame:</label>
                     <input type="date" name="date" formControlName="date">
                     <span *ngIf="form.get('date')?.invalid && form.get('date')?.touched" class="erro-formulario">
-                        Data do exame é obrigatória.
+                        Data do exame é obrigatória e deve ser uma data posterior a data atual.
                     </span>
                 </div>
                 <div id="time" class="elemento-formulario"
@@ -61,7 +61,7 @@
                 <div id="type" class="elemento-formulario"
                     [ngClass]="{'erro-formulario': form.get('type')?.invalid && form.get('type')?.touched}">
                     <label for="type">Tipo do exame:</label>
-                    <input type="text" name="type" formControlName="type">
+                    <input type="text" name="type" formControlName="type" placeholder="Tipo do exame">
                     <span *ngIf="form.get('type')?.invalid && form.get('type')?.touched" class="erro-formulario">
                         Tipo do exame é obrigatório.
                     </span>
@@ -69,31 +69,31 @@
                 <div id="lab" class="elemento-formulario"
                     [ngClass]="{'erro-formulario': form.get('lab')?.invalid && form.get('lab')?.touched}">
                     <label for="lab">Laboratório:</label>
-                    <input type="text" name="lab" formControlName="lab">
+                    <input type="text" name="lab" formControlName="lab" placeholder="Nome do laboratório">
                     <span *ngIf="form.get('lab')?.invalid && form.get('lab')?.touched" class="erro-formulario">
                         Nome do laboratório é obrigatório.
                     </span>
                 </div>
             </div>
             <div id="url" class="elemento-formulario">
-                <label for="url">Alergias:</label>
+                <label for="url">URL do exame (se tiver):</label>
                 <input type="text" name="url" formControlName="url">
             </div>
-            <div id="results" class="elemento-formulario" [ngClass]="{'erro-formulario': form.get('results')?.invalid && form.get('results')?.touched}">
+            <div id="results" class="elemento-formulario"
+                [ngClass]="{'erro-formulario': form.get('results')?.invalid && form.get('results')?.touched}">
                 <label for="results">Resultados:</label>
-                <textarea type="text" name="results" formControlName="results" ></textarea>
+                <textarea type="text" name="results" formControlName="results"></textarea>
                 <span *ngIf="form.get('results')?.invalid && form.get('results')?.touched" class="erro-formulario">
-                    Nome do laboratório é obrigatório.
+                    Você deve preencher os resultados do exame.
                 </span>
             </div>
 
             <div class="buttons">
-                <button class="save" [disabled]="!form.valid" (click)="cadastrar()"
-                    [class.disabled]="!form.valid">Salvar</button>
                 <button class="delete" [disabled]="!isEdit" [class.disabled]="!isEdit"
                     (click)="deletar(selectedExamId)">Deletar</button>
                 <button class="edit" [disabled]="!isEdit" [class.disabled]="!isEdit"
                     (click)="cadastrar()">Editar</button>
+                <button class="save" [disabled]="!form.valid" [class.disabled]="!form.valid">Salvar</button>
             </div>
         </form>
     </div>

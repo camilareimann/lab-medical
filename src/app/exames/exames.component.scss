@@ -100,7 +100,7 @@
         
                     .button-edit,
                     .button-delete {
-                        width: 70px; // Adjust width as needed
+                        width: 70px; 
                         height: 27px;
                         border-radius: 100px;
                         font-size: 10px;
@@ -156,6 +156,13 @@ input[type="date"] {
     padding-right: 20px;
 }
 
+input[type="time"] {
+    color: #777779;
+    font-size: 16px;
+    line-height: 34px;
+    padding-right: 20px;
+}
+
 textarea {
     display: flex;
     flex-direction: column;
@@ -166,9 +173,9 @@ textarea {
     border: 2px solid $color-500;
     border-radius: 8px;
     padding-left: 20px;
-    padding-top: 10px; // Adjust as needed
-    padding-bottom: 10px; // Adjust as needed
-    resize: vertical; // Allow vertical resizing
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    resize: vertical;
     color: #777779;
 
     &:focus {
