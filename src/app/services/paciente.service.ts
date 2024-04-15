@@ -33,18 +33,20 @@ export class PacienteService {
 
   updatePatient(updatedPatient: any): void {
     const index = this.pacienteList.findIndex(p => p.id === updatedPatient.id);
-  if (index !== -1) {
-    const existingExams = this.pacienteList[index].exams;
-    this.pacienteList[index] = { ...updatedPatient, exams: existingExams };
-    this.saveToLocalStorage();
+    if (index !== -1) {
+      const existingExams = this.pacienteList[index].exams;
+      const existingConsultas = this.pacienteList[index].consultas;
+      this.pacienteList[index] = { ...updatedPatient, exams: existingExams, consultas: existingConsultas };
+      this.saveToLocalStorage();
     }
   }
+
 
   deletePatient(patientId: string): void {
     const index = this.pacienteList.findIndex(p => p.id === patientId);
     if (index !== -1) {
       this.pacienteList.splice(index, 1);
-      this.saveToLocalStorage();
+      this.saveToLocalStorage(); 
     }
   }
 
@@ -53,12 +55,8 @@ export class PacienteService {
   }
 
 
-  addExam(patientId: string, exam: any): void {
-    console.log('Adding exam for patientId:', patientId);
-    console.log('Received exam data:', exam);
-    
+  addExam(patientId: string, exam: any): void {   
     const patient = this.getPatientById(patientId);
-
     
     if (patient) {
         if (!patient.exams) {
@@ -89,6 +87,41 @@ export class PacienteService {
       const index = patient.exams.findIndex((e: any) => e.id === examId);
       if (index !== -1) {
         patient.exams.splice(index, 1);
+        this.saveToLocalStorage();
+      }
+    }
+  }
+
+  addConsulta(patientId: string, consulta: any): void {
+    const patient = this.getPatientById(patientId);
+    if (patient) {
+      if (!patient.consultas) {
+        patient.consultas = [];
+      }
+      const consultaId = uuidv4();
+      consulta.id = consultaId;
+      patient.consultas.push(consulta);
+      this.saveToLocalStorage();
+    }
+  }
+
+  updateConsulta(patientId: string, updatedConsulta: any): void {
+    const patient = this.getPatientById(patientId);
+    if (patient && patient.consultas) {
+      const index = patient.consultas.findIndex((c: any) => c.id === updatedConsulta.id);
+      if (index !== -1) {
+        patient.consultas[index] = { ...updatedConsulta };
+        this.saveToLocalStorage();
+      }
+    }
+  }
+  
+  deleteConsulta(patientId: string, consultaId: string): void {
+    const patient = this.getPatientById(patientId);
+    if (patient && patient.consultas) {
+      const index = patient.consultas.findIndex((c: any) => c.id === consultaId);
+      if (index !== -1) {
+        patient.consultas.splice(index, 1);
         this.saveToLocalStorage();
       }
     }
