@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-import { CustomValDateService } from '../services/custom-val-date.service';
 
 @Component({
   selector: 'app-exames',
@@ -28,7 +27,7 @@ export class ExamesComponent implements OnInit{
   searchQuery: string = '';
   selectedPatientId: string | null = null;
   selectedExamId: string = '';
-  isFormVisible: boolean = false; 
+  isFormVisible: boolean = false;
 
   onSidebarRetracted(isRetracted: boolean) {
     this.isMenuRetracted = isRetracted;
@@ -42,7 +41,6 @@ export class ExamesComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private pacienteService: PacienteService,
-    private customValService: CustomValDateService
   ) {
 
     this.pacienteData = this.pacienteService.getAllPatients();
@@ -54,14 +52,8 @@ export class ExamesComponent implements OnInit{
         Validators.minLength(8),
         Validators.maxLength(64)
       ]),
-      time: new FormControl('', [
-        Validators.required,
-        this.customValService.currentTimeOrFutureValidator()
-      ]),
-      date: new FormControl('', [
-        Validators.required,
-        this.customValService.currentDateOrFutureValidator()
-      ]),
+      time: new FormControl('', Validators.required),
+      date: new FormControl('', Validators.required),
       type: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -81,6 +73,19 @@ export class ExamesComponent implements OnInit{
       id: new FormControl('')
     });
 
+  }
+
+  getCurrentDate(): string {
+    const date = new Date();
+    const day = ("0" + date.getDate()).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
+
+  getCurrentTime(): string {
+    const currentTime = new Date().toTimeString().split(' ')[0];
+    return currentTime;
   }
 
   filterPatients(): void {
