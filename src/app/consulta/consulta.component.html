@@ -33,7 +33,7 @@
             <div id=motive class="elemento-formulario"
                 [ngClass]="{'erro-formulario': form.get('motive')?.invalid && form.get('motive')?.touched}">
                 <label for=motive>Motivo da consulta:</label>
-                <input placeholder="EX:. Ressonância Magnética" type="text" name=motive formControlName=motive>
+                <input type="text" name=motive formControlName=motive>
                 <span *ngIf="form.get('motive')?.invalid && form.get('motive')?.touched">
                     Motivo da consulta é obrigatório e deve ter entre 8 e 64 caracteres.
                 </span>
@@ -41,7 +41,7 @@
             <div class="row">
                 <div id="date" class="elemento-formulario"
                     [ngClass]="{'erro-formulario': form.get('date')?.invalid && form.get('date')?.touched}">
-                    <label for="date">Data do consultae:</label>
+                    <label for="date">Data da consulta:</label>
                     <input type="date" name="date" formControlName="date">
                     <span *ngIf="form.get('date')?.invalid && form.get('date')?.touched" class="erro-formulario">
                         Data da consulta é obrigatória e deve ser uma data posterior a data atual.
@@ -49,7 +49,7 @@
                 </div>
                 <div id="time" class="elemento-formulario"
                     [ngClass]="{'erro-formulario': form.get('time')?.invalid && form.get('time')?.touched}">
-                    <label for="time">Horario do consultae:</label>
+                    <label for="time">Horario da consulta:</label>
                     <input type="time" name="time" formControlName="time">
                     <span *ngIf="form.get('time')?.invalid && form.get('time')?.touched" class="erro-formulario">
                         Horário é obrigatorio.
