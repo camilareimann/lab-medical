@@ -21,10 +21,14 @@ export class HomeComponent {
   pacienteData: any[] = [];
   filteredPacienteData: any[] = [];
   searchQuery: string = '';
+  totalPatients: number = 0;
+  totalExams: number = 0;
+  totalConsultas: number = 0;
 
   constructor(private pacienteService: PacienteService, private router: Router){
     this.pacienteData = this.pacienteService.getAllPatients();
     this.filteredPacienteData = [...this.pacienteData];
+    this.calculateTotals();
   }
 
   isMenuRetracted = false;
@@ -50,5 +54,25 @@ export class HomeComponent {
       patient.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
       patient.phone.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
+  }
+
+  calculateTotals(): void {
+    const pacientes = this.pacienteService.getAllPatients();
+    this.totalPatients = pacientes.length;
+
+    let totalExams = 0;
+    let totalConsultas = 0;
+
+    pacientes.forEach(paciente => {
+      if (paciente.exams) {
+        totalExams += paciente.exams.length;
+      }
+      if (paciente.consultas) {
+        totalConsultas += paciente.consultas.length;
+      }
+    });
+
+    this.totalExams = totalExams;
+    this.totalConsultas = totalConsultas;
   }
 }
