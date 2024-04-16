@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-import { CustomValDateService } from '../services/custom-val-date.service';
+
 
 @Component({
   selector: 'app-consulta',
@@ -42,7 +42,6 @@ export class ConsultaComponent {
     private route: ActivatedRoute,
     private router: Router,
     private pacienteService: PacienteService,
-    private customValService: CustomValDateService
   ) {
 
     this.pacienteData = this.pacienteService.getAllPatients();
@@ -54,14 +53,8 @@ export class ConsultaComponent {
         Validators.minLength(8),
         Validators.maxLength(64)
       ]),
-      time: new FormControl('', [
-        Validators.required,
-        this.customValService.currentTimeOrFutureValidator()
-      ]),
-      date: new FormControl('', [
-        Validators.required,
-        this.customValService.currentDateOrFutureValidator()
-      ]),
+      time: new FormControl('', Validators.required),
+      date: new FormControl('', Validators.required),
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(16),
