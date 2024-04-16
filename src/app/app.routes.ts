@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
 import { ExamesComponent } from './exames/exames.component';
 import { ConsultaComponent } from './consulta/consulta.component';
+import { ProntuariosComponent } from './prontuarios/prontuarios.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,4 +18,5 @@ export const routes: Routes = [
     { path: 'exame/edit/:examId', component: ExamesComponent },
     { path: 'consulta', component: ConsultaComponent },
     { path: 'consulta/edit/:examId', component: ConsultaComponent },
+    { path: 'prontuarios', component: ProntuariosComponent },
 ];
