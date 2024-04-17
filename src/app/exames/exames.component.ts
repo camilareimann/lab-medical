@@ -60,7 +60,7 @@ export class ExamesComponent implements OnInit{
       }
     });
   }
-  
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -161,7 +161,7 @@ export class ExamesComponent implements OnInit{
       this.selectedExamId = examId;
     }
   }
-  
+
   deletar(examId: string): void {
     this.pacienteService.deleteExam(this.selectedPatientId!, examId);
     Swal.fire({

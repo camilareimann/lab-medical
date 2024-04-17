@@ -62,7 +62,6 @@ export class PacienteService {
         if (!patient.exams) {
             patient.exams = [];
         }
-        // testar UUID para gerar codigo unico aleatorio
         const examId = uuidv4();
         exam.id = examId;
         patient.exams.push(exam);

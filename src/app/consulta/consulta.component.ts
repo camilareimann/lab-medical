@@ -4,11 +4,10 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { PacienteService } from '../services/paciente.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-
 
 @Component({
   selector: 'app-consulta',
@@ -63,7 +62,6 @@ export class ConsultaComponent implements OnInit {
       }
     });
   }
-  
 
   constructor(
     private route: ActivatedRoute,
@@ -111,7 +109,7 @@ export class ConsultaComponent implements OnInit {
       this.filteredPacienteData = [...this.pacienteData];
     }
   }
-  
+
   get patientConsultas(): any[] {
     const patient = this.pacienteService.getPatientById(this.selectedPatientId!);
     return patient ? patient.consultas : [];
@@ -147,7 +145,7 @@ export class ConsultaComponent implements OnInit {
       this.selectedConsultaId = consultaId;
     }
   }
-  
+
   deletar(consultaId: string): void {
     this.pacienteService.deleteConsulta(this.selectedPatientId!, consultaId);
     Swal.fire({
