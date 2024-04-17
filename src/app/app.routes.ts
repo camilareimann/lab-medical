@@ -16,9 +16,9 @@ export const routes: Routes = [
     { path: 'paciente', component: CadastroPacienteComponent },
     { path: 'paciente/edit/:id', component: CadastroPacienteComponent },
     { path: 'exame', component: ExamesComponent },
-    { path: 'exame/edit/:examId', component: ExamesComponent },
+    { path: 'exame/:examId', component: ExamesComponent },
     { path: 'consulta', component: ConsultaComponent },
-    { path: 'consulta/edit/:examId', component: ConsultaComponent },
+    { path: 'consulta/:consultaId', component: ConsultaComponent },
     { path: 'prontuarios', component: ProntuariosComponent },
     { path: 'prontuarios/:id', component: ProntuarioPacienteComponent }
 ];

@@ -34,9 +34,20 @@ export class ExamesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
+    this.route.params.subscribe(params => {
+      this.selectedExamId = params['examId'];
+      if (this.selectedExamId) {
+        const patient = this.pacienteData.find(patient => 
+          patient.exams.some((exam: { id: string; }) => exam.id === this.selectedExamId)
+        );
+        if (patient) {
+          this.selectPatient(patient.id);
+          this.editar(this.selectedExamId);
+        }
+      }
+    });
   }
-
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
