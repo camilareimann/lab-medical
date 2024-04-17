@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { PacienteService } from '../services/paciente.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
@@ -19,6 +19,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 })
 export class ConsultaComponent implements OnInit {
 
+  containerSearch: boolean = true; 
   isMenuRetracted = false;
   pageTitle: string = 'Cadastro de consultas';
   form: FormGroup;
@@ -37,6 +38,8 @@ export class ConsultaComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.selectedConsultaId = params['consultaId'];
+      this.containerSearch = !this.selectedConsultaId;
+
       if (this.selectedConsultaId) {
         const patient = this.pacienteData.find(patient => 
           patient.consultas.some((consulta: { id: string; }) => consulta.id === this.selectedConsultaId)

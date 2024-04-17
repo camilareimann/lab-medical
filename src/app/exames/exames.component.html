@@ -2,7 +2,7 @@
 <app-toolbar [isMenuRetracted]="isMenuRetracted" [pageTitle]="pageTitle"></app-toolbar>
 <div class="container" id="exame" [ngClass]="{'retracted': isMenuRetracted}">
 
-    <div class="container-search">
+    <div class="container-search" *ngIf="containerSearch">
         <input type="text" placeholder="Busque um paciente por nome, telefone ou e-mail" [(ngModel)]="searchQuery"
             (input)="filterPatients()">
         <button>Buscar</button>

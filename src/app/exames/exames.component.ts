@@ -18,6 +18,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 })
 export class ExamesComponent implements OnInit{
 
+  containerSearch: boolean = true; 
   isMenuRetracted = false;
   pageTitle: string = 'Cadastro de Exames';
   form: FormGroup;
@@ -36,6 +37,7 @@ export class ExamesComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.selectedExamId = params['examId'];
+      this.containerSearch = !this.selectedExamId;
       if (this.selectedExamId) {
         const patient = this.pacienteData.find(patient => 
           patient.exams.some((exam: { id: string; }) => exam.id === this.selectedExamId)
