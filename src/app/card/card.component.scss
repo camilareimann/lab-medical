@@ -11,6 +11,10 @@
     gap: 15px;
     justify-content: space-between;
 
+    img{
+        width: 64px;
+        height: auto;
+    }
     .information {
         display: flex;
         flex-direction: column;
