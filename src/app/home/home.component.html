@@ -1,6 +1,6 @@
-<app-sidebar (sidebarRetracted)="onSidebarRetracted($event)"></app-sidebar>
+<app-sidebar (sidebarRetracted)="onSidebarRetracted($event)" [isRetracted]="isMenuRetracted"></app-sidebar>
 <app-toolbar [isMenuRetracted]="isMenuRetracted" [pageTitle]="pageTitle"></app-toolbar>
-<div class="container" [ngClass]="{'retracted': isMenuRetracted}">
+<div class="container" [ngClass]="{'retracted': isMenuRetracted}" >
     <div class="container-numbers">
         <div class="estatisticas">
             <div class="card pacientes">

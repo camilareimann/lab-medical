@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -18,12 +18,22 @@ import { GenderPicturePipe } from '../pipes/gender-picture.pipe';
 export class ProntuarioPacienteComponent implements OnInit {
   isMenuRetracted = false;
   pageTitle: string = 'Prontuário do Paciente';
+  patient: any; 
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.detectScreenSize();
+  }
+
+  detectScreenSize() {
+    const screenWidth = window.innerWidth;
+    const smallScreenBreakpoint = 768;
+    this.isMenuRetracted = screenWidth < smallScreenBreakpoint;
+  }
 
   onSidebarRetracted(isRetracted: boolean) {
     this.isMenuRetracted = isRetracted;
   }
-
-  patient: any; 
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -39,7 +49,7 @@ export class ProntuarioPacienteComponent implements OnInit {
     private router: Router,
     private patientService: PacienteService,
   ){
-
+    this.detectScreenSize();
   }
 
   editarExame(examId: string): void {
