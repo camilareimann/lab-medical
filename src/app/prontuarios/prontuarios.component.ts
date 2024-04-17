@@ -23,8 +23,6 @@ export class ProntuariosComponent implements OnInit{
   filteredPacienteData: any[] = [];
   searchQuery: string = '';
 
-
-
   onSidebarRetracted(isRetracted: boolean) {
     this.isMenuRetracted = isRetracted;
   }
@@ -51,6 +49,11 @@ export class ProntuariosComponent implements OnInit{
       patient.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
       patient.id.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
+  }
+
+  navigateToProntuario(patientId: string) {
+    this.router.navigate(['/prontuarios', patientId]);
+
   }
 
 }
