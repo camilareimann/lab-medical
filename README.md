@@ -1,27 +1,43 @@
-# ProjetoAvaliativo
+# LABMedical
+O projeto intitulado LABMedical é um software para gestão de inventário médico. Nele os médicos podem cadastrar seus pacientes e manter um inventário de consultas e exames relacionados aos pacientes. 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
+## Índice
+- [Versões Utilizadas](#versões-utilizadas)
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Dúvidas](#dúvidas)
+- [Licença](#licença)
+- [Créditos](#créditos)
 
-## Development server
+## Versões Utilizadas
+- Angular CLI: 17.3.2
+- Angular: 17.3.0
+- npm: 8.1.0
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Instalação
+Para executar este projeto, você precisa ter Node.js e Angular CLI instalados em sua máquina. Certifique-se de ter as seguintes versões instaladas:
 
-## Code scaffolding
+- Angular CLI: 17.3.2
+- Angular: 17.3.0
+- npm: 8.1.0
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Depois de clonar este repositório, execute o seguinte comando: npm install
 
-## Build
+## Uso
+Para iniciar o servidor de desenvolvimento, execute: ng serve
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Em seguida, abra seu navegador e navegue até http://localhost:4200/
 
-## Running unit tests
+## Dúvidas
+Para dúvidas ou sugestões, abra um problema.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Créditos
+Este projeto contou com a ajuda das bibliotecas e recursos listados abaixo: 
 
-## Running end-to-end tests
+1. Font Awesome: Uma biblioteca popular de ícones que oferece uma vasta coleção de ícones para uso em interfaces de usuário.
+2. SweetAlert2: Uma biblioteca para exibir belas caixas de diálogo modais personalizadas, substituindo as caixas de diálogo padrão do navegador.
+3. Ngx-Mask: Uma biblioteca para adicionar máscaras de entrada a campos de formulário, facilitando a formatação de dados conforme o usuário os digita.
+4. PrimeNG: Uma biblioteca de componentes de interface do usuário para Angular, oferecendo uma variedade de componentes ricos e prontos para uso, como tabelas, menus, formulários e muito mais.
+5. UUID: Uma biblioteca para a geração de identificadores únicos universais (UUIDs), que são frequentemente usados em aplicações para identificar recursos de forma única.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+@Projeto avaliativo criado para conclusão do módulo de Desenvolvimento Front-End do SESI/SENAI.
