@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { CustomValidatorService } from '../services/custom-validator.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
@@ -49,13 +50,24 @@ export class SignUpComponent{
         this.form.controls['senha'].setValue('');
         this.form.controls['confirmarSenha'].setValue('');
 
-        if (this.Router.url === '/login') {
-          window.location.reload();
-        } else {
-          this.Router.navigate(['/login']);
-        }
+        Swal.fire({
+          text: "Cadastro efetuado com sucesso!",
+          icon: "success",
+          confirmButtonColor: "#0A7B73",
+          confirmButtonText: "OK"
+        }).then((result) => {
+          if (this.Router.url === '/login') {
+            window.location.reload();
+          } else {
+            this.Router.navigate(['/login']);
+          }
+        })
       } else {
-        alert('formulario invalido');
+        Swal.fire({
+          text: "Formulário inválido",
+          icon: "error",
+          confirmButtonColor: "#0A7B73",
+          confirmButtonText: "OK"})
       }
     }
   }
