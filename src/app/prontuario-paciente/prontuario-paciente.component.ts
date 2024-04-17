@@ -7,6 +7,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { PacienteService } from '../services/paciente.service';
 import { GenderPicturePipe } from '../pipes/gender-picture.pipe';
 
+
 @Component({
   selector: 'app-prontuario-paciente',
   standalone: true,
@@ -24,7 +25,6 @@ export class ProntuarioPacienteComponent implements OnInit {
 
   patient: any; 
 
-
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const pacienteId = params['id'];
@@ -40,6 +40,14 @@ export class ProntuarioPacienteComponent implements OnInit {
     private patientService: PacienteService,
   ){
 
+  }
+
+  editarExame(examId: string): void {
+    this.router.navigate(['/exame', examId]);
+  }
+
+  editarConsulta(consultaId: string): void {
+    this.router.navigate(['/consulta', consultaId]);
   }
 
 }

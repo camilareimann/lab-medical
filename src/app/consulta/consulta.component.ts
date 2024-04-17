@@ -17,7 +17,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
   templateUrl: './consulta.component.html',
   styleUrl: './consulta.component.scss'
 })
-export class ConsultaComponent {
+export class ConsultaComponent implements OnInit {
 
   isMenuRetracted = false;
   pageTitle: string = 'Cadastro de consultas';
@@ -35,8 +35,20 @@ export class ConsultaComponent {
   }
 
   ngOnInit(): void {
-
+    this.route.params.subscribe(params => {
+      this.selectedConsultaId = params['consultaId'];
+      if (this.selectedConsultaId) {
+        const patient = this.pacienteData.find(patient => 
+          patient.consultas.some((consulta: { id: string; }) => consulta.id === this.selectedConsultaId)
+        );
+        if (patient) {
+          this.selectPatient(patient.id);
+          this.editar(this.selectedConsultaId);
+        }
+      }
+    });
   }
+  
 
   constructor(
     private route: ActivatedRoute,
