@@ -1,7 +1,8 @@
 <app-sidebar (sidebarRetracted)="onSidebarRetracted($event)" [isRetracted]="isMenuRetracted"></app-sidebar>
 <app-toolbar [isMenuRetracted]="isMenuRetracted" [pageTitle]="pageTitle"></app-toolbar>
 <div class="container" id="exame" [ngClass]="{'retracted': isMenuRetracted}">
-
+    
+    <h3 class="encontre">Encontre o paciente:</h3>
     <div class="container-search">
         <input type="text" placeholder="Busque um paciente por nome ou número de registro" [(ngModel)]="searchQuery"
             (input)="filterPatients()">
