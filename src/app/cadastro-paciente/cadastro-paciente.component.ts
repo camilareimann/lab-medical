@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
@@ -22,11 +22,20 @@ export class CadastroPacienteComponent implements OnInit{
 
   isMenuRetracted = false;
   pageTitle: string = 'Cadastro de Pacientes';
-
   showAddress: boolean = false;
   form: FormGroup;
   isEdit: boolean = false;
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.detectScreenSize();
+  }
+
+  detectScreenSize() {
+    const screenWidth = window.innerWidth;
+    const smallScreenBreakpoint = 768;
+    this.isMenuRetracted = screenWidth < smallScreenBreakpoint;
+  }
 
   onSidebarRetracted(isRetracted: boolean) {
     this.isMenuRetracted = isRetracted;
@@ -38,6 +47,7 @@ export class CadastroPacienteComponent implements OnInit{
     private patientService: PacienteService,
     private viaCepService: ViaCepService,
   ) {
+    this.detectScreenSize();
     this.form = new FormGroup({
       name: new FormControl('', [
         Validators.required,

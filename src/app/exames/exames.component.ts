@@ -1,5 +1,5 @@
 import { CommonModule, formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
@@ -30,6 +30,17 @@ export class ExamesComponent implements OnInit{
   selectedExamId: string = '';
   isFormVisible: boolean = false;
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.detectScreenSize();
+  }
+
+  detectScreenSize() {
+    const screenWidth = window.innerWidth;
+    const smallScreenBreakpoint = 768;
+    this.isMenuRetracted = screenWidth < smallScreenBreakpoint;
+  }
+
   onSidebarRetracted(isRetracted: boolean) {
     this.isMenuRetracted = isRetracted;
   }
@@ -55,7 +66,8 @@ export class ExamesComponent implements OnInit{
     private router: Router,
     private pacienteService: PacienteService,
   ) {
-
+    this.detectScreenSize();
+    
     this.pacienteData = this.pacienteService.getAllPatients();
     this.filteredPacienteData = [...this.pacienteData];
 

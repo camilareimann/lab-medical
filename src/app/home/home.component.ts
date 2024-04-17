@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
@@ -24,15 +24,26 @@ export class HomeComponent {
   totalPatients: number = 0;
   totalExams: number = 0;
   totalConsultas: number = 0;
+  isMenuRetracted = false;
+  pageTitle: string = 'Página Inicial';
 
   constructor(private pacienteService: PacienteService, private router: Router){
     this.pacienteData = this.pacienteService.getAllPatients();
     this.filteredPacienteData = [...this.pacienteData];
     this.calculateTotals();
+    this.detectScreenSize();
   }
 
-  isMenuRetracted = false;
-  pageTitle: string = 'Página Inicial';
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.detectScreenSize();
+  }
+
+  detectScreenSize() {
+    const screenWidth = window.innerWidth;
+    const smallScreenBreakpoint = 768;
+    this.isMenuRetracted = screenWidth < smallScreenBreakpoint;
+  }
 
   onSidebarRetracted(isRetracted: boolean) {
     this.isMenuRetracted = isRetracted;

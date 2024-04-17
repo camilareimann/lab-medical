@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
@@ -23,6 +23,17 @@ export class ProntuariosComponent implements OnInit{
   filteredPacienteData: any[] = [];
   searchQuery: string = '';
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.detectScreenSize();
+  }
+
+  detectScreenSize() {
+    const screenWidth = window.innerWidth;
+    const smallScreenBreakpoint = 768;
+    this.isMenuRetracted = screenWidth < smallScreenBreakpoint;
+  }
+
   onSidebarRetracted(isRetracted: boolean) {
     this.isMenuRetracted = isRetracted;
   }
@@ -38,6 +49,8 @@ export class ProntuariosComponent implements OnInit{
   ){
     this.pacienteData = this.pacienteService.getAllPatients();
     this.filteredPacienteData = [...this.pacienteData];
+
+    this.detectScreenSize();
   }
 
   filterPatients() {
