@@ -3,7 +3,7 @@
 <div class="container" id="exame" [ngClass]="{'retracted': isMenuRetracted}">
 
     <div class="container-search">
-        <input type="text" placeholder="Busque um paciente por nome, telefone ou e-mail" [(ngModel)]="searchQuery"
+        <input type="text" placeholder="Busque um paciente por nome ou número de registro" [(ngModel)]="searchQuery"
             (input)="filterPatients()">
         <button>Buscar</button>
     </div>
