@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -65,8 +65,8 @@ export class ExamesComponent implements OnInit{
         Validators.minLength(8),
         Validators.maxLength(64)
       ]),
-      time: new FormControl('', Validators.required),
-      date: new FormControl('', Validators.required),
+      date: new FormControl(formatDate(new Date(), 'yyyy-MM-dd', 'en'), [Validators.required]),
+    time: new FormControl(formatDate(new Date(), 'HH:mm', "en"), [Validators.required]),
       type: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
