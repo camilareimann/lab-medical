@@ -15,7 +15,6 @@ export class SidebarComponent {
 
   isMenuRetracted = false;
 
-
   constructor() {
     this.checkScreenSize();
   }
