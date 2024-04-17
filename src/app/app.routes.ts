@@ -7,18 +7,46 @@ import { ExamesComponent } from './exames/exames.component';
 import { ConsultaComponent } from './consulta/consulta.component';
 import { ProntuariosComponent } from './prontuarios/prontuarios.component';
 import { ProntuarioPacienteComponent } from './prontuario-paciente/prontuario-paciente.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
+    {
+        path: 'home', component: HomeComponent,
+        canActivate: [authGuard]
+    },
     { path: 'login', component: SinginSignupPageComponent },
     { path: 'cadastro', component: SignUpComponent },
-    { path: 'paciente', component: CadastroPacienteComponent },
-    { path: 'paciente/edit/:id', component: CadastroPacienteComponent },
-    { path: 'exame', component: ExamesComponent },
-    { path: 'exame/:examId', component: ExamesComponent },
-    { path: 'consulta', component: ConsultaComponent },
-    { path: 'consulta/:consultaId', component: ConsultaComponent },
-    { path: 'prontuarios', component: ProntuariosComponent },
-    { path: 'prontuarios/:id', component: ProntuarioPacienteComponent }
+    {
+        path: 'paciente', component: CadastroPacienteComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'paciente/edit/:id', component: CadastroPacienteComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'exame', component: ExamesComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'exame/:examId', component: ExamesComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'consulta', component: ConsultaComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'consulta/:consultaId', component: ConsultaComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'prontuarios', component: ProntuariosComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'prontuarios/:id', component: ProntuarioPacienteComponent,
+        canActivate: [authGuard]
+    }
 ];
