@@ -65,6 +65,7 @@ export class PacienteService {
         const examId = uuidv4();
         exam.id = examId;
         patient.exams.push(exam);
+        patient.exams.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
         this.saveToLocalStorage();
     }
 }
@@ -75,6 +76,7 @@ export class PacienteService {
       const index = patient.exams.findIndex((e: any) => e.id === updatedExam.id);
       if (index !== -1) {
         patient.exams[index] = { ...updatedExam };
+        patient.exams.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
         this.saveToLocalStorage();
       }
     }
@@ -100,6 +102,7 @@ export class PacienteService {
       const consultaId = uuidv4();
       consulta.id = consultaId;
       patient.consultas.push(consulta);
+      patient.consultas.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
       this.saveToLocalStorage();
     }
   }
@@ -110,6 +113,7 @@ export class PacienteService {
       const index = patient.consultas.findIndex((c: any) => c.id === updatedConsulta.id);
       if (index !== -1) {
         patient.consultas[index] = { ...updatedConsulta };
+        patient.consultas.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
         this.saveToLocalStorage();
       }
     }
