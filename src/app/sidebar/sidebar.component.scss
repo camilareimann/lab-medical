@@ -26,6 +26,10 @@
     .alt-logo {
         display: none;
     }
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        transform: scale(1.1); 
+    }
 }
 
 .menu-area {
@@ -52,6 +56,10 @@
     text-decoration: none;
     color: white;
     font-size: 20px;
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        transform: scale(1.1); 
+    }
 }
 
 .menu li .icon {
@@ -80,6 +88,11 @@
     width: 100%;
     font-size: 2.5em;
     color: $sec-color;
+    transition: left 0.2s ease-in-out;
+    padding-right: 20px;
+&:hover{
+        transform: translate3d(-5px,0, 0); 
+}
 }
 
 .unretract-menu {
