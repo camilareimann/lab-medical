@@ -6,6 +6,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { PacienteService } from '../services/paciente.service';
 import { GenderPicturePipe } from '../pipes/gender-picture.pipe';
+import { DatePipe } from '@angular/common';
 
 
 @Component({

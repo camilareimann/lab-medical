@@ -27,7 +27,7 @@
                     </div>
                     <div class="secondary-info">
                         <div class="id">
-                            <p>Data: <span class="id-number">{{ consulta.date }}</span></p>
+                            <p>Data: <span class="id-number">{{ consulta.date | date: 'dd-MM-yyyy' }}</span></p>
                         </div>
                         <div class="id">
                             <p>Hora: <span class="id-number">{{ consulta.time }}</span></p>
@@ -68,7 +68,7 @@
                     <div class="extra-info">
                     <div class="secondary-info">
                         <div class="id">
-                            <p>Data: <span class="id-number">{{ exam.date }}</span></p>
+                            <p>Data: <span class="id-number">{{ exam.date | date: 'dd-MM-yyyy' }}</span></p>
                         </div>
                         <div class="id">
                             <p>Hora: <span class="id-number">{{ exam.time }}</span></p>
