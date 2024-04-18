@@ -33,14 +33,29 @@
                             <p>Hora: <span class="id-number">{{ consulta.time }}</span></p>
                         </div>
                     </div>
-                    <div class="btn">
-                        <button (click)="editarConsulta(consulta.id)">Editar consulta</button>
+                    <div class="extra-info">
+                        <div class="extra-01">
+                            <p>Descrição:</p>
+                            <p>{{ consulta.description }}</p>
+                        </div>
+                        <div *ngIf="consulta.medication" class="extra-02">
+                            <p>Medicação:</p>
+                            <p>{{ consulta.medication }}</p>
+                        </div>
+                        <div class="extra-03">
+                            <p>Prescriçoes:</p>
+                            <p>{{ consulta.dosage }}</p>
+                        </div>
                     </div>
+
+                </div>
+                <div class="btn">
+                    <button (click)="editarConsulta(consulta.id)">Editar consulta</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="exames">
         <h3>Exames:</h3>
         <div class="container-exames">
@@ -50,10 +65,7 @@
                         <h4>Nome do exame:</h4>
                         <p>{{ exam.name }}</p>
                     </div>
-                    <div class="lab">
-                        <p>Laboratório:</p>
-                        <p>{{ exam.lab }}</p>
-                    </div>
+                    <div class="extra-info">
                     <div class="secondary-info">
                         <div class="id">
                             <p>Data: <span class="id-number">{{ exam.date }}</span></p>
@@ -62,10 +74,25 @@
                             <p>Hora: <span class="id-number">{{ exam.time }}</span></p>
                         </div>
                     </div>
-                    <div class="btn">
-                        <button (click)="editarExame(exam.id)">Editar exame</button>
-                        <button>Ver anexo</button>
+                    
+                    <div class="lab">
+                        <p>Laboratório:</p>
+                        <p>{{ exam.lab }}</p>
                     </div>
+                    <div class="lab">
+                        <p>Tipo:</p>
+                        <p>{{ exam.type }}</p>
+                    </div>
+                    <div class="lab">
+                        <p>Resultado:</p>
+                        <p>{{ exam.results }}</p>
+                    </div>
+                </div>
+
+                </div>
+                <div class="btn">
+                    <button (click)="editarExame(exam.id)">Editar exame</button>
+                    <button>Ver anexo</button>
                 </div>
             </div>
         </div>
