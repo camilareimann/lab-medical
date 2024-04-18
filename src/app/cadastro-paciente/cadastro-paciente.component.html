@@ -1,6 +1,7 @@
 <app-sidebar (sidebarRetracted)="onSidebarRetracted($event)" [isRetracted]="isMenuRetracted"></app-sidebar>
 <app-toolbar [isMenuRetracted]="isMenuRetracted" [pageTitle]="pageTitle"></app-toolbar>
 <div class="container" id="cadastro" [ngClass]="{'retracted': isMenuRetracted}">
+    <h3 class="encontre">Cadastre um paciente:</h3>
 
     <form [formGroup]="form" class="fieldset" (ngSubmit)="cadastrar()">
         <div id="name" class="elemento-formulario"
